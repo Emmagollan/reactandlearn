@@ -1,158 +1,38 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.25rem;
-  line-height: 2.5rem;
-  color: rgb(53, 53, 156);
-  scroll-behavior: smooth;
-}
-h1  {
-  font-size: 3.5rem;
-  font-weight: 600;
-  display: block;
-  padding-bottom: 20px;
-}
-h2 {
-  font-size: 2rem;
-  font-weight: 100;
-  line-height: 3rem;;
+.App {
+  text-align: center;
 }
 
-a {
-  color: rgb(85, 87, 167);
-  text-decoration: none;
-  border-bottom: 1px solid rgb(54, 54, 211);
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
-a:hover  {
-  color: rgb(224, 28, 192);
-  text-decoration: none;
-  border-bottom: 1px solid rgb(29, 29, 131);
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
-/* --------navigation------- */
-nav.navbar {
-  padding: 2rem 0;
-  color: whitesmoke;
-  background: rgb(68, 68, 126);
-}
-.navbar-brand {
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
   color: white;
-  font-size: 2rem;
-  font-weight: 800;
-  border-bottom: none;;
-}
-.nav-item {
-  padding: 0 1rem;;
-}
-.nav-link {
-  color: whitesmoke;
-  font-size: 1.5rem;
-  font-weight: 100;
-  border-bottom: 2px solid ;
-}
-.nav-link.active {
-  color: rgb(238, 50, 238);
-  border-color: rgb(116, 93, 219);
-}
-.nav-link:hover {
-  color: rgb(243, 39, 141);
-}
-/* -------- hero -----------*/
-.hero {
-  background: rgb(236, 235, 236);
-  min-height: 800px;
-  color: rgb(6, 13, 100)
 }
 
-.hero-content {
-  padding-top: 205px;
+.App-link {
+  color: #61dafb;
 }
 
-.img-circle {
-  border-radius: 50%;
-  overflow: hidden;
-  border: 8px solid rgb(24, 16, 48);
-}
-
-/* -------- Resume -----------*/
-h2.title {
-  font-weight: 700;
-  padding: 1rem 0;
-  color: rgb(91, 64, 241);
-}
-.event-item h3 {
-  font-weight: 300;
-  color: rgb(209, 9, 209)
-}
-.event-item h4 {
-  font-size: 1rem;
-  font-weight: 700;
-}
-.event-item {
-  position: relative;
-  border-left: 1px solid purple;
-  padding-left: 20px;
-}
-.event-item:before,.event-item:after {
-  width: 12px;
-    height: 12px;
-    border: 1px solid ;
-    position: absolute;
-    content: "";
-    border-radius: 50%;
-    background-color: rgb(22, 22, 85);
-    left: -7px;
-}
-.event-item:after {
-  bottom: 0;
-}
-.skill-list li {
-  border-left: 15px solid rgb(29, 29, 94);
-  margin-bottom: 20px;
-  line-height: 1rem;
-  padding-left: 10px;
-}
-
-/* -------- Portfolio -----------*/
-.project-container {
-  display: block;
-  position: relative;
-}
-.project-details{
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 20px;
-  background: rgba(217, 204, 228, 0.9);
-  transition: all ease .3s;
-}
-.project-details:hover{
-  opacity: 1;
-}
-.project-list {
-  font-size: 2rem;
-}
-.project-list a {
-  text-decoration: none;
-  border-bottom: none;
-}
-
-/* -------- Contact -----------*/
-#errMsg {
-  display: block;
-}
-#errMsg.hide{
-  display: none;
-}
-
-/* -------- footer -----------*/
-.footer {
-  border-top: 1px solid;
-  margin-top: 100px;
-  padding-top: 25px;
-
-}
-.footer li {
-  padding: 0 20px;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,92 +1,65 @@
-import React, { useState } from 'react';
-import {validateEmail } from '../../utils/helpers';
+import React from 'react';
+import mainPhoto from '../../assets/images/profile-photo.jpg';
+import {BrowserRouter as Router, Link} from 'react-router-dom';
+import { HashLink as Anchor } from 'react-router-hash-link';
 
-function Contact() {
-  let errMsg = document.getElementById('errMsg');
-    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+function About() {
+    //custom greeting based on time of day
+    const myDate = new Date();
+    const hours = myDate.getHours();
+    let greeting;
 
-  const [errorMessage, setErrorMessage] = useState('');
-  const { name, email, message } = formState;
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!errorMessage) {
-      console.log('Submit Form', formState);
-    }
-  };
-
-  const handleChange = (e) => {
-    if (e.target.name === 'email') {
-      const isValid = validateEmail(e.target.value);
-      if (!isValid) {
-      errMsg.classList.remove('hide');
-        setErrorMessage('Your email is invalid.');
-      } else {
-        setErrorMessage('');
-      }
-    } else {
-      if (!e.target.value.length) {
-        errMsg.classList.remove('hide');
-        setErrorMessage(`${e.target.name} is required.`);
-      } else {
-        errMsg.classList.add('hide');
-        setErrorMessage('');
-      }
-    }
-    if (!errorMessage) {
-      setFormState({ ...formState, [e.target.name]: e.target.value });
-      console.log('Handle Form', formState);
-    }
-  };
+        if (hours < 12) {
+            greeting =  'Good morning,';
+        }
+        else if( hours >= 12 && hours <= 17) {
+            greeting =  'Good afternoon,';
+        }
+         else {
+             greeting = 'Good evening,'
+         }
+    
 
     return (
-        <section>
+        <Router>
+        <main>
+    <section>
+        <div className="hero">
             <div className="container">
                 <div className="row justify-content-center">
-                    <div className="col-xxl-10 col-xl-12">
-                        <div className="intro">
-                            <div className="hero-content">
-                            <h1>Let's Get in Touch</h1>
-                            <h2>Have a question, comment, concern, or plain just want to chat it up with me?
-                                Feel free to drop a message below. Or Connect with me through <a href="https://github.com/Emmagollan" target="_blank" rel="noreferrer"><i
-                                        className="fab fa-github-alt"></i> Github</a>, <a href="https://www.linkedin.com/in/emma-gollan-012043203/" target="_blank" rel="noreferrer"><i
-                                        className="fab fa-linkedin-in"></i> LinkedIn</a>, or <a
-                                    href="mailto:emmagollan33@gmail.com"><i
-                                        className="fas fa-envelope-open-text"></i> email</a>.</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="row justify-content-center">
-                    <div className="col-xxl-10 col-xl-12">
+                    <div className="col-xxl-12">
+                        <div className="hero-content">
                         <div className="row">
-                        <div className="col-md-8">
-                            <form id="contact-form" className="mb-4" onSubmit={handleSubmit}>
-                                    <div className="mb-3">
-                                        <label htmlFor="name">Name</label>
-                                        <input type="text" className="form-control" name="name" defaultValue={name} onBlur={handleChange} />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="email">Email address:</label>
-                                        <input type="email" className="form-control" name="email" defaultValue={email} onBlur={handleChange} />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="message">Message:</label>
-                                        <textarea className="form-control" name="message" rows="5" defaultValue={message} onBlur={handleChange} />
-                                    </div>
-                                    <div id="errMsg" className="mb-3 hide">
-                                        <div className="alert alert-danger" role="alert">
-                                            <p className="error-text">{errorMessage}</p>
-                                        </div>
-                                    </div>
-                                    <button data-testid="button" className="btn btn-primary" type="submit">Submit</button>
-                                </form>
+                                <div className="col-xxl-3 col-xl-4">
+                                <img src={mainPhoto} alt="Emma Gollan" className="img-circle img-fluid" />
+                                </div>
+                                <div className="col-xxl-9 col-xl-8">
+                                <h1>{greeting} My name is Emma, I'm a Fullstack Developer living in Orlando, FL.</h1>
+                                <h2>Learn more <Anchor to="/#about">about me</Anchor> below or please, take a look at my <Link
+                                    to="/portfolio">portfolio</Link> &amp; <Link to="/resume">resume</Link>. <Link to="/contact">Contact me</Link> with any questions.</h2>
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
-            </div>  
-        </section>
-      );
+            </div>
+        </div>
+        <div className="container mt-5 mb-5" id="about">
+            <div className="row justify-content-center">
+                <div className="col-xxl-10 col-xl-12">
+                    <div className="section mt-5 mb-5">
+                        <p>I grew up in New Zealand, but have been calling the United States home since 2001.  I offically became an American citizen in 2019, it was a very proud day for me.  I still have the heart of a kiwi though, with the love of travel in my blood!  I love to explore new places because I enjoy the diversity of new communities and cultures.  Exploring and curiosity for the unknown leads to learning and growing, which I believe is the spice of life.  I love all things creative and enjoy several artist hobbies including watercolor and resin art.  Add more content later.  marry your values with why you'll be an awesome dev. </p>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</Router>
+    )
+
 }
-export default Contact;
+export default About;
