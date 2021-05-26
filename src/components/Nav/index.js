@@ -1,57 +1,45 @@
-import React, { useEffect } from 'react';
-import { capitalizeFirstLetter } from '../../utils/helpers';
+import React from 'react';
+import {Route, Link} from 'react-router-dom';
 
-function Nav(props) {
-  const {
-    categories = [],
-    setCurrentCategory,
-    contactSelected,
-    currentCategory,
-    setContactSelected,
-  } = props;
 
-  useEffect(() => {
-    document.title = capitalizeFirstLetter(currentCategory.name);
-  }, [currentCategory]);
+function Nav() {
 
-  return (
-    <header className="flex-row px-1">
-      <h2>
-        <a data-testid="link" href="/">
-          <span role="img" aria-label="camera"> </span> Emma Gollan
-        </a>
-      </h2>
-      <nav>
-        <ul className="flex-row">
-          <li className="mx-2">
-            <a data-testid="about" href="#about" onClick={() => setContactSelected(false)}>
-              About me
-            </a>
-          </li>
-          <li className={`mx-2 ${contactSelected && 'navActive'}`}>
-            <span onClick={() => setContactSelected(true)}>Contact</span>
-          </li>
-          {categories.map((category) => (
-            <li
-              className={`mx-1 ${
-                currentCategory.name === category.name && !contactSelected && 'navActive'
-                }`}
-              key={category.name}
-            >
-              <span
-                onClick={() => {
-                  setCurrentCategory(category);
-                  setContactSelected(false);
-                }}
-              >
-                {capitalizeFirstLetter(category.name)}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
-  );
+    return (
+        <Route>
+        <header>
+            <nav className="navbar fixed-top navbar-expand-lg">
+                <div className="container">
+                    <Link className="navbar-brand" to="/">EMMA GOLLAN</Link>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <i className="fas fa-bars"></i>
+                    </button>
+                    <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                        <ul className="navbar-nav mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <Link className='nav-link' to="/">About</Link>
+                                
+                            </li>
+                            <li className="nav-item">
+                                <Link className='nav-link' to="/portfolio">Portfolio</Link>
+                                
+                            </li>
+                            <li className="nav-item">
+                                <Link className='nav-link' to="/contact">Contact</Link>
+                                
+                            </li>
+                            <li className="nav-item">
+                                <Link className='nav-link' to="/resume">Resume</Link>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        </Route>
+    )
 }
 
 export default Nav;

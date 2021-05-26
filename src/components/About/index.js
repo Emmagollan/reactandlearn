@@ -1,19 +1,92 @@
-import React from 'react';
-import coverImage from '../../assets/cover/cover-image.jpg';
-function About() {
-  return (
-    <section className="my-5">
-      <h1 id="about">Who am I?</h1>
-      <img src={coverImage} className="my-2" style={{ width: "100%" }} alt="cover" />
-      <div className="my-2">
-        <p>
-        Hi there, I'm currently a student at University of Central Florida studying the wonderful world of coding. I am learning a range of skills and technologies for both the front and back-end and I will graduate in June 2021 as a full-stack developer. 
-        I grew up in New Zealand, but have been calling the US home since I moved here in 2001.  I have a professional background in education, investing, managment and customer service. I am thrilled to be breaking into the field of coding and find myself excited and challenged every day! Check out my projects to see some examples of my work.
-        If you are looking for a passionate person with drive, curiosity, and a diligent work ethic, then I may be a good fit for your organization and I would love to hear from you.
-        </p>
-      </div>
-    </section>
-  );
-}
+import React, { useState } from 'react';
+import {validateEmail } from '../../utils/helpers';
 
-export default About;
+function Contact() {
+  let errMsg = document.getElementById('errMsg');
+    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+
+  const [errorMessage, setErrorMessage] = useState('');
+  const { name, email, message } = formState;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!errorMessage) {
+      console.log('Submit Form', formState);
+    }
+  };
+
+  const handleChange = (e) => {
+    if (e.target.name === 'email') {
+      const isValid = validateEmail(e.target.value);
+      if (!isValid) {
+      errMsg.classList.remove('hide');
+        setErrorMessage('Your email is invalid.');
+      } else {
+        setErrorMessage('');
+      }
+    } else {
+      if (!e.target.value.length) {
+        errMsg.classList.remove('hide');
+        setErrorMessage(`${e.target.name} is required.`);
+      } else {
+        errMsg.classList.add('hide');
+        setErrorMessage('');
+      }
+    }
+    if (!errorMessage) {
+      setFormState({ ...formState, [e.target.name]: e.target.value });
+      console.log('Handle Form', formState);
+    }
+  };
+
+    return (
+        <section>
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-xxl-10 col-xl-12">
+                        <div className="intro">
+                            <div className="hero-content">
+                            <h1>Let's Get in Touch</h1>
+                            <h2>Have a question, comment, concern, or plain just want to chat it up with me?
+                                Feel free to drop a message below. Or Connect with me through <a href="https://github.com/Emmagollan" target="_blank" rel="noreferrer"><i
+                                        className="fab fa-github-alt"></i> Github</a>, <a href="https://www.linkedin.com/in/emma-gollan-012043203/" target="_blank" rel="noreferrer"><i
+                                        className="fab fa-linkedin-in"></i> LinkedIn</a>, or <a
+                                    href="mailto:emmagollan33@gmail.com"><i
+                                        className="fas fa-envelope-open-text"></i> email</a>.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row justify-content-center">
+                    <div className="col-xxl-10 col-xl-12">
+                        <div className="row">
+                        <div className="col-md-8">
+                            <form id="contact-form" className="mb-4" onSubmit={handleSubmit}>
+                                    <div className="mb-3">
+                                        <label htmlFor="name">Name</label>
+                                        <input type="text" className="form-control" name="name" defaultValue={name} onBlur={handleChange} />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="email">Email address:</label>
+                                        <input type="email" className="form-control" name="email" defaultValue={email} onBlur={handleChange} />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="message">Message:</label>
+                                        <textarea className="form-control" name="message" rows="5" defaultValue={message} onBlur={handleChange} />
+                                    </div>
+                                    <div id="errMsg" className="mb-3 hide">
+                                        <div className="alert alert-danger" role="alert">
+                                            <p className="error-text">{errorMessage}</p>
+                                        </div>
+                                    </div>
+                                    <button data-testid="button" className="btn btn-primary" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </section>
+      );
+}
+export default Contact;
