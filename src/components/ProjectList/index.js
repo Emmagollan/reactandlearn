@@ -10,7 +10,14 @@ function ProjectList() {
             github: 'git@github.com:Silverlin19/Pantree2.0.git',
             live: 'https://silverlin19.github.io/Pantree2.0/'
         },
-        
+
+        {
+            name: 'Social',
+            category: 'web app',
+            image: 'social.png',
+            github: 'https://github.com/kalesaladboi/final-proj',
+            live: ''
+        },
         
         
         {
